@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 namespace SuperAdventure
 {
     public partial class LoadScreen : Form
     {
-        private List<string> _saveFiles;
+        private readonly List<string> _saveFiles;
         public LoadScreen()
         {
             InitializeComponent();
@@ -60,6 +60,7 @@ namespace SuperAdventure
             // Starte das Spiel mit der ausgewählten Speicherdatei
             SuperAdventure game = new SuperAdventure(saveFile);
             game.StartPosition = FormStartPosition.CenterScreen;
+            game.FormClosed += (s, args) => this.Close();
             game.Show();
             this.Hide();
         }

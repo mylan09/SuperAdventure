@@ -21,6 +21,7 @@ namespace SuperAdventure
         {
             SuperAdventure newGame = new SuperAdventure(null); // Neues Spiel ohne Speicherdatei starten
             newGame.StartPosition = FormStartPosition.CenterScreen;
+            newGame.FormClosed += (s, args) => this.Close();
             newGame.Show();
             this.Hide();
         }
@@ -29,6 +30,7 @@ namespace SuperAdventure
         {
             LoadScreen loadScreen = new LoadScreen();
             loadScreen.StartPosition = FormStartPosition.CenterScreen;
+            loadScreen.FormClosed += (s, args) => this.Close();
             loadScreen.Show();
             this.Hide();
         }
