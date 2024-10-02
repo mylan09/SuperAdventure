@@ -29,6 +29,7 @@ namespace SuperAdventure
         private const string PLAYER_DATA_FILE_NAME = "SaveGames";
 
         private Player _player;
+        private InventoryChest _chest;
 
         public SuperAdventure(string selectedSaveFile)
         {
@@ -186,8 +187,10 @@ namespace SuperAdventure
                 btnSouth.Visible = (_player.CurrentLocation.LocationToSouth != null);
                 btnWest.Visible = (_player.CurrentLocation.LocationToWest != null);
                 btnTrade.Visible = (_player.CurrentLocation.VendorWorkingHere != null);
+                btnSave.Visible = (_player.CurrentLocation.HasSavePoint != null);
+                btnChest.Visible = (_player.CurrentLocation.HasChest != null);
 
-               
+
                 // Display current location name and description
                 rtbLocation.Text = _player.CurrentLocation.Name + Environment.NewLine;
                 rtbLocation.Text += _player.CurrentLocation.Description + Environment.NewLine;
@@ -370,5 +373,19 @@ namespace SuperAdventure
             }
         }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveScreen saveScreen = new SaveScreen(_player);
+            saveScreen.StartPosition = FormStartPosition.CenterScreen;
+            saveScreen.ShowDialog(this);
+        }
+
+        private void btnChest_Click(object sender, EventArgs e)
+        {
+            // InventoryChest chest = new InventoryChest("Chest");
+            ChestScreen chestScreen = new ChestScreen(_player, _player.Chest); // Pass both player and chest
+            chestScreen.StartPosition = FormStartPosition.CenterScreen;
+            chestScreen.ShowDialog(this);
+        }
     }
 }

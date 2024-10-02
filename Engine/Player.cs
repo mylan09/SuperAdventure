@@ -68,6 +68,7 @@ namespace Engine
         }
 
         public List <int> LocationsVisited { get; set; }
+        public InventoryChest Chest { get; set; }
 
         public BindingList<InventoryItem> Inventory { get; set; }
 
@@ -84,6 +85,7 @@ namespace Engine
             Quests = new BindingList<PlayerQuest>();
             Level = 1;
             LocationsVisited = new List<int>();
+            Chest = new InventoryChest("Chest");
         }
 
         public Player() : base(0, 0)
@@ -91,6 +93,7 @@ namespace Engine
             Inventory = new BindingList<InventoryItem>();
             Quests = new BindingList<PlayerQuest>();
             LocationsVisited = new List<int>();
+           
         }
 
         public static Player CreateDefaultPlayer()
@@ -156,9 +159,6 @@ namespace Engine
                 LocationsVisited.Add(CurrentLocation.ID);
             }
 
-            
-
-
             // Completely heal the player
             CompletelyHeal();
 
@@ -184,6 +184,7 @@ namespace Engine
                     }
                 }
             }
+            
 
             SetTheCurrentMonsterForTheCurrentLocation(location);
             SortQuests();
@@ -236,20 +237,6 @@ namespace Engine
                 }
             }
             
-            //    Überprüfen, ob Pfeile im Inventar vorhanden sind
-            //    var arrow = Inventory.SingleOrDefault(item => item.Details.ID == World.ITEM_ID_ARROW);
-
-            //    if (CurrentWeapon == World.ItemByID(World.ITEM_ID_BOW))
-            //    {
-            //        RemoveItemFromInventory(arrow.Details, 1);
-            //    }
-
-            //    if (arrow == null || arrow.Quantity <= 0)
-            //    {
-            //        RaiseMessage("You have no arrows left to use the Bow.", true, Color.Red);
-            //        return;  // Kein Angriff, wenn keine Pfeile da sind
-            //    }
-
             int damage = RandomNumberGenerator.NumberBetween(weapon.MinimumDamage, weapon.MaximumDamage);
 
             if (damage == 0)

@@ -15,6 +15,8 @@ namespace SuperAdventure
     {
 
         private Player _currentPlayer;
+        public BindingList<InventoryItem> Inventory { get; set; } = new BindingList<InventoryItem>();
+
         public TradingScreen(Player player)
         {
             _currentPlayer = player;

@@ -77,11 +77,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChestScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChestScreen.Designer.cs">
+      <DependentUpon>ChestScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoadScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoadScreen.Designer.cs">
       <DependentUpon>LoadScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SaveScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaveScreen.Designer.cs">
+      <DependentUpon>SaveScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="StartScreen.cs">
       <SubType>Form</SubType>
@@ -109,6 +121,9 @@
     <Compile Include="WorldMap.Designer.cs">
       <DependentUpon>WorldMap.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ChestScreen.resx">
+      <DependentUpon>ChestScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoadScreen.resx">
       <DependentUpon>LoadScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,6 +137,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SaveScreen.resx">
+      <DependentUpon>SaveScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StartScreen.resx">
       <DependentUpon>StartScreen.cs</DependentUpon>
     </EmbeddedResource>

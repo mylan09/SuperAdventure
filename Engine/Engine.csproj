@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Converter\JsonCreationConverter.cs" />
     <Compile Include="HealingPotion.cs" />
+    <Compile Include="InventoryChest.cs" />
     <Compile Include="InventoryItem.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="LivingCreature.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Quest.cs" />
     <Compile Include="QuestCompletionItem.cs" />
     <Compile Include="RandomNumberGenerator.cs" />
+    <Compile Include="SavePoint.cs" />
     <Compile Include="Vendor.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="World.cs" />

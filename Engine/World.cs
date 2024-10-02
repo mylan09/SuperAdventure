@@ -274,7 +274,12 @@ namespace Engine
         public static void PopulateLocations()
         {
             // Create each location
-            Location home = new Location(LOCATION_ID_HOME, "Home", "Your house. You really need to clean up the place.");
+            Location home = new Location(LOCATION_ID_HOME, "Home", "Your house. You really need to clean up the place. If you are tired, go to bed.");
+            
+            SavePoint savepoint= new SavePoint("Bed");
+            home.HasSavePoint = savepoint;
+            InventoryChest chest = new InventoryChest("Chest");
+            home.HasChest = chest;
 
             Location training = new Location(LOCATION_ID_TRAINING_ROOM, "Training field", "Here you can test your Weapons, make sure the monsters don't hurt you! In the trainingroom is no reward for killing monsters");
             training.AddMonster(MONSTER_ID_RAT, 10);
@@ -341,6 +346,7 @@ namespace Engine
             Location dungeonEntrance = new Location(LOCATION_ID_DUNGEON_ENTRANCE, "Dungeon Entrance", "You see a big entrance. You can see trolls guarding. They attack you!", ItemByID(ITEM_ID_KEY));
             dungeonEntrance.AddMonster(MONSTER_ID_TROLL, 100);
             dungeonEntrance.QuestAvailableHere = QuestByID(QUEST_ID_CLEAR_DUNGEON_ENTRANCE);
+            dungeonEntrance.HasChest = chest;
 
             Location dungeon = new Location(LOCATION_ID_DUNGEON, "Dungeon", "You see a big dragon. He attacks you!", ItemByID(ITEM_ID_BOW));
             dungeon.AddMonster(MONSTER_ID_DRAGON, 100);

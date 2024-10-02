@@ -22,13 +22,14 @@ namespace Engine
         public Location LocationToEast { get; set; }
         public Location LocationToSouth { get; set; }
         public Location LocationToWest { get; set; }
+        public SavePoint HasSavePoint { get; set; }
+        public InventoryChest HasChest { get; set; }
 
         public bool CloseOffLocation 
         {
             get { return closeOffLocation; }
             set { closeOffLocation = value; }
         }
-
         
         public bool HasAQuest { get { return QuestAvailableHere != null; } }
         public bool HasAMonster { get { return _monstersAtLocation.Count > 0; } }
@@ -42,6 +43,7 @@ namespace Engine
             Description = description;
             ItemRequiredToEnter = itemRequiredToEnter;
             QuestAvailableHere = questAvailableHere;
+            HasSavePoint = null;
 
         }
 

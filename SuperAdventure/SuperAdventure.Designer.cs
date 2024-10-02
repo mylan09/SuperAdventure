@@ -55,6 +55,8 @@
             this.btnWorldMap = new System.Windows.Forms.Button();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.vScrollBar2 = new System.Windows.Forms.VScrollBar();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnChest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuests)).BeginInit();
             this.SuspendLayout();
@@ -183,9 +185,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboPotions.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPotions.FormattingEnabled = true;
-            this.cboPotions.Location = new System.Drawing.Point(369, 593);
+            this.cboPotions.Location = new System.Drawing.Point(347, 593);
             this.cboPotions.Name = "cboPotions";
-            this.cboPotions.Size = new System.Drawing.Size(121, 24);
+            this.cboPotions.Size = new System.Drawing.Size(128, 24);
             this.cboPotions.TabIndex = 9;
             // 
             // cboWeapons
@@ -195,9 +197,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboWeapons.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboWeapons.FormattingEnabled = true;
-            this.cboWeapons.Location = new System.Drawing.Point(369, 559);
+            this.cboWeapons.Location = new System.Drawing.Point(347, 559);
             this.cboWeapons.Name = "cboWeapons";
-            this.cboWeapons.Size = new System.Drawing.Size(121, 24);
+            this.cboWeapons.Size = new System.Drawing.Size(128, 24);
             this.cboWeapons.TabIndex = 10;
             // 
             // btnUseWeapon
@@ -290,7 +292,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTrade.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTrade.Location = new System.Drawing.Point(493, 620);
+            this.btnTrade.Location = new System.Drawing.Point(496, 622);
             this.btnTrade.Name = "btnTrade";
             this.btnTrade.Size = new System.Drawing.Size(75, 23);
             this.btnTrade.TabIndex = 21;
@@ -416,11 +418,33 @@
             this.vScrollBar2.TabIndex = 26;
             this.vScrollBar2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar2_Scroll);
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(496, 622);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 27;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnChest
+            // 
+            this.btnChest.Location = new System.Drawing.Point(571, 622);
+            this.btnChest.Name = "btnChest";
+            this.btnChest.Size = new System.Drawing.Size(75, 23);
+            this.btnChest.TabIndex = 28;
+            this.btnChest.Text = "Chest";
+            this.btnChest.UseVisualStyleBackColor = true;
+            this.btnChest.Click += new System.EventHandler(this.btnChest_Click);
+            // 
             // SuperAdventure
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(719, 651);
+            this.Controls.Add(this.btnChest);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.vScrollBar2);
             this.Controls.Add(this.vScrollBar1);
             this.Controls.Add(this.btnWorldMap);
@@ -489,6 +513,8 @@
         private System.Windows.Forms.Button btnWorldMap;
         private System.Windows.Forms.VScrollBar vScrollBar1;
         private System.Windows.Forms.VScrollBar vScrollBar2;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnChest;
     }
 }
 
