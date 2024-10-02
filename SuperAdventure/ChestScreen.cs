@@ -59,12 +59,19 @@ namespace SuperAdventure
 
             dgvMyItems.Columns.Add(new DataGridViewButtonColumn
             {
-                Text = "Store 1",
+                Text = "-1",
                 UseColumnTextForButtonValue = true,
-                Width = 60,
+                Width = 30,
                 DataPropertyName = "ItemID"
             });
 
+            dgvMyItems.Columns.Add(new DataGridViewButtonColumn
+            {
+                Text = "-10",
+                UseColumnTextForButtonValue = true,
+                Width = 30,
+                DataPropertyName = "ItemID"
+            });
             // Bind the player's inventory to the DataGridView
             dgvMyItems.DataSource = _currentPlayer.Inventory;
 
@@ -99,9 +106,17 @@ namespace SuperAdventure
 
             dgvChestItems.Columns.Add(new DataGridViewButtonColumn
             {
-                Text = "Take 1",
+                Text = "+1",
                 UseColumnTextForButtonValue = true,
-                Width = 60,
+                Width = 30,
+                DataPropertyName = "ItemID"
+            });
+
+            dgvChestItems.Columns.Add(new DataGridViewButtonColumn
+            {
+                Text = "+10",
+                UseColumnTextForButtonValue = true,
+                Width = 30,
                 DataPropertyName = "ItemID"
             });
 
@@ -114,36 +129,67 @@ namespace SuperAdventure
         private void dgvMyItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // The 4th column (column index 3) has the "Store 1" button
-            if (e.ColumnIndex == 3)
+
+            var itemID = dgvMyItems.Rows[e.RowIndex].Cells[0].Value;
+
+            // Get the item being stored
+            Item itemBeingStored = World.ItemByID(Convert.ToInt32(itemID));
+
+            InventoryItem playerInventoryItem = _currentPlayer.Inventory.SingleOrDefault(ii => ii.Details.ID == itemBeingStored.ID);
+
+
+            if (e.ColumnIndex == 3) // Store 1 button clicked
             {
-                var itemID = dgvMyItems.Rows[e.RowIndex].Cells[0].Value;
-
-                // Get the item being stored
-                Item itemBeingStored = World.ItemByID(Convert.ToInt32(itemID));
-
                 // Remove the item from the player's inventory
-                _currentPlayer.RemoveItemFromInventory(itemBeingStored);
+                _currentPlayer.RemoveItemFromInventory(itemBeingStored, 1);
 
                 // Add the item to the chest's inventory
-                _chest.AddItemToInventoryChest(itemBeingStored);
+                _chest.AddItemToInventoryChest(itemBeingStored, 1);
             }
+
+            else if (e.ColumnIndex == 4) // Store 10 button clicked
+            {
+
+                int quantityToStore = Math.Min(playerInventoryItem.Quantity, 10);
+                // Remove 10 items from the player's inventory
+                _currentPlayer.RemoveItemFromInventory(itemBeingStored, quantityToStore);
+
+                // Add 10 items to the chest's inventory
+                _chest.AddItemToInventoryChest(itemBeingStored, quantityToStore);
+            }
+
         }
 
         private void dgvChestItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            var itemID = dgvChestItems.Rows[e.RowIndex].Cells[0].Value;
+
+            // Get the item being taken
+            Item itemBeingTaken = World.ItemByID(Convert.ToInt32(itemID));
+
+            InventoryItem chestInventoryItem = _chest.Inventory.SingleOrDefault(ii => ii.Details.ID == itemBeingTaken.ID);
+
+
             // The 4th column (column index 3) has the "Take 1" button
             if (e.ColumnIndex == 3)
             {
-                var itemID = dgvChestItems.Rows[e.RowIndex].Cells[0].Value;
-
-                // Get the item being taken
-                Item itemBeingTaken = World.ItemByID(Convert.ToInt32(itemID));
-
                 // Remove the item from the chest's inventory
-                _chest.RemoveItemFromInventoryChest(itemBeingTaken);
+                _chest.RemoveItemFromInventoryChest(itemBeingTaken, 1);
 
                 // Add the item to the player's inventory
-                _currentPlayer.AddItemToInventory(itemBeingTaken);
+                _currentPlayer.AddItemToInventory(itemBeingTaken, 1);
+            }
+
+            else if (e.ColumnIndex == 4) // Take 10 button clicked
+            {
+
+                int quantityToTake = Math.Min(chestInventoryItem.Quantity, 10); // Take only up to the available quantity
+
+                // Remove 10 items from the chest's inventory
+                _chest.RemoveItemFromInventoryChest(itemBeingTaken, quantityToTake);
+
+                // Add 10 items to the player's inventory
+                _currentPlayer.AddItemToInventory(itemBeingTaken, quantityToTake);
             }
         }
 
