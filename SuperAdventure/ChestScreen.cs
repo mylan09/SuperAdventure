@@ -45,7 +45,7 @@ namespace SuperAdventure
             dgvMyItems.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Name",
-                Width = 100,
+                Width = 80,
                 DataPropertyName = "Description"
             });
 
@@ -59,17 +59,17 @@ namespace SuperAdventure
 
             dgvMyItems.Columns.Add(new DataGridViewButtonColumn
             {
-                Text = "-1",
+                Text = "1 -->",
                 UseColumnTextForButtonValue = true,
-                Width = 30,
+                Width = 50,
                 DataPropertyName = "ItemID"
             });
 
             dgvMyItems.Columns.Add(new DataGridViewButtonColumn
             {
-                Text = "-10",
+                Text = "10 -->",
                 UseColumnTextForButtonValue = true,
-                Width = 30,
+                Width = 50,
                 DataPropertyName = "ItemID"
             });
             // Bind the player's inventory to the DataGridView
@@ -92,7 +92,7 @@ namespace SuperAdventure
             dgvChestItems.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Name",
-                Width = 100,
+                Width = 80,
                 DataPropertyName = "Description"
             });
 
@@ -106,17 +106,17 @@ namespace SuperAdventure
 
             dgvChestItems.Columns.Add(new DataGridViewButtonColumn
             {
-                Text = "+1",
+                Text = "<-- 1",
                 UseColumnTextForButtonValue = true,
-                Width = 30,
+                Width = 50,
                 DataPropertyName = "ItemID"
             });
 
             dgvChestItems.Columns.Add(new DataGridViewButtonColumn
             {
-                Text = "+10",
+                Text = "<-- 10",
                 UseColumnTextForButtonValue = true,
-                Width = 30,
+                Width = 50,
                 DataPropertyName = "ItemID"
             });
 

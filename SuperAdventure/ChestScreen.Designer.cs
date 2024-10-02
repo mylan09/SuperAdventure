@@ -39,6 +39,8 @@
             // 
             // dgvMyItems
             // 
+            this.dgvMyItems.AllowUserToResizeColumns = false;
+            this.dgvMyItems.AllowUserToResizeRows = false;
             this.dgvMyItems.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvMyItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMyItems.GridColor = System.Drawing.SystemColors.Control;
@@ -49,6 +51,8 @@
             // 
             // dgvChestItems
             // 
+            this.dgvChestItems.AllowUserToResizeColumns = false;
+            this.dgvChestItems.AllowUserToResizeRows = false;
             this.dgvChestItems.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvChestItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChestItems.GridColor = System.Drawing.SystemColors.Control;

@@ -150,6 +150,12 @@ namespace Engine
 
             }
 
+            if (LocationsVisited.Contains(location.ID))
+            {
+                
+
+            }
+
             // Update the player's current location
             //CurrentLocation = World.LocationByID(location.ID);
             CurrentLocation = location;
@@ -349,15 +355,28 @@ namespace Engine
 
         public bool HasRequiredItemToEnterThisLocation(Location location)
         {
-
+            // Wenn die Location kein Item zum Betreten erfordert, kann der Spieler direkt eintreten
             if (location.DoesNotHaveAnItemRequiredToEnter)
             {
                 return true;
             }
 
-            // See if the player has the required item in their inventory
+            // Wenn die Location eine Quest hat und der Spieler diese abgeschlossen hat, wird kein Item benötigt
+            if (location.HasAQuest && PlayerHasCompleted(location.QuestAvailableHere))
+            {
+                RaiseMessage("You have completed the quest here, you can enter without the required item.", true, Color.Green);
+                return true;
+            }
+
+            // Prüfen, ob der Spieler das erforderliche Item im Inventar hat
             return Inventory.Any(ii => ii.Details.ID == location.ItemRequiredToEnter.ID);
-       
+        }
+
+        private bool PlayerHasCompleted(Quest quest)
+        {
+            // Überprüfen, ob der Spieler die Quest abgeschlossen hat
+            PlayerQuest playerQuest = Quests.SingleOrDefault(pq => pq.Details.ID == quest.ID);
+            return playerQuest != null && playerQuest.IsCompleted;
         }
 
         public void RemoveQuestCompletionItems(Quest quest)
@@ -661,7 +680,6 @@ namespace Engine
             return string.Empty;
 
         }
-
 
     }
 
