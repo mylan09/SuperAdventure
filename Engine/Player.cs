@@ -294,9 +294,22 @@ namespace Engine
             if (IsDead)
             {
                 RaiseMessage("The " + CurrentMonster.Name + " killed you.", true, Color.Red);
-
+                RemoveAllItemsFromInventory();
                 MoveHome();
             }
+        }
+
+        private void RemoveAllItemsFromInventory()
+        {
+            var nonWeaponItems = Inventory
+                                      .Where(ii => !(ii.Details is Weapon))
+                                      .ToList();
+
+            foreach (var item in nonWeaponItems)
+            {
+                Inventory.Remove(item);
+            }
+            OnPropertyChanged("Inventory");
         }
 
         public void UsePotion(HealingPotion potion)

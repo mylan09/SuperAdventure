@@ -29,7 +29,7 @@ namespace SuperAdventure
         private const string PLAYER_DATA_FILE_NAME = "SaveGames";
 
         private Player _player;
-        private InventoryChest _chest;
+        // private InventoryChest _chest;
 
         public SuperAdventure(string selectedSaveFile)
         {

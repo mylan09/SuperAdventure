@@ -165,9 +165,13 @@ namespace Engine
             Monster troll = new Monster(MONSTER_ID_TROLL, "Troll", 40, 20, 30, 10, 10); // Have to fight against 10, Healing Stone? = hitPoints +150 - for Dragon Fight
             troll.LootTable.Add(new LootItem(ItemByID(ITEM_ID_TUFTS_OF_HAIR), 20, true));
 
+#if DEBUG
+            Monster dragon = new Monster(MONSTER_ID_DRAGON, "Dragon", 200, 20, 30, 10, 10); // Have to fight against 1
+            dragon.LootTable.Add(new LootItem(ItemByID(ITEM_ID_DRAGON_EYE), 100, true));
+#else            
             Monster dragon = new Monster(MONSTER_ID_DRAGON, "Dragon", 50, 20, 30, 10, 10); // Have to fight against 1
             dragon.LootTable.Add(new LootItem(ItemByID(ITEM_ID_DRAGON_EYE), 100, true));
-
+#endif
             _monsters.Clear();
             _monsters.Add(rat);
             _monsters.Add(snake);

@@ -106,7 +106,7 @@ namespace SuperAdventure
             });
 
             // Bind the chest's inventory to the DataGridView
-            dgvChestItems.DataSource = _currentPlayer.Chest.Inventory; // Bind the chest inventory here
+            dgvChestItems.DataSource = _currentPlayer.Chest.Inventory;
 
             // Handle the cell click for taking items
             dgvChestItems.CellClick += dgvChestItems_CellClick;
