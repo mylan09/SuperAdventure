@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
@@ -18,9 +19,13 @@ namespace Engine
         public Vendor VendorWorkingHere { get; set; }
         public Item ItemRequiredToEnter { get; set; }
         public Quest QuestAvailableHere { get; set; }
+        [BsonIgnore]
         public Location LocationToNorth { get; set; }
+        [BsonIgnore]
         public Location LocationToEast { get; set; }
+        [BsonIgnore]
         public Location LocationToSouth { get; set; }
+        [BsonIgnore]
         public Location LocationToWest { get; set; }
         public SavePoint HasSavePoint { get; set; }
         public InventoryChest HasChest { get; set; }

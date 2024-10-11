@@ -9,11 +9,16 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.Remoting.Messaging;
 using System.Drawing;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
 
 namespace Engine
 {
     public class Player : LivingCreature
     {
+        [BsonId]  // Markiere die Eigenschaft als die ID des Dokuments
+        public ObjectId Id { get; set; }
+        public DateTime LastSaveTime { get; set; }  // Zeitstempel für den letzten Speicherpunkt
 
         private int _gold;
 
@@ -78,6 +83,7 @@ namespace Engine
 
         private Player(int currentHitPoints, int maximumHitPoints, int gold, int experiencePoints) : base(currentHitPoints, maximumHitPoints)
         {
+            Id = ObjectId.GenerateNewId(); // Generiere eine neue ObjectId
             Gold = gold;
             ExperiencePoints = experiencePoints;
 
@@ -90,6 +96,7 @@ namespace Engine
 
         public Player() : base(0, 0)
         {
+            Id = ObjectId.GenerateNewId(); // Generiere eine neue ObjectId
             Inventory = new BindingList<InventoryItem>();
             Quests = new BindingList<PlayerQuest>();
             LocationsVisited = new List<int>();
@@ -667,17 +674,17 @@ namespace Engine
             };
             
             var playerToSave = JsonConvert.SerializeObject(this, options);
-            DateTimeOffset dto = new DateTimeOffset(DateTime.Now);
-            var fileName = $"SaveGame_{dto.ToUnixTimeMilliseconds()}.json";
+            //DateTimeOffset dto = new DateTimeOffset(DateTime.Now);
+            //var fileName = $"SaveGame_{dto.ToUnixTimeMilliseconds()}.json";
             
-            if (!Directory.Exists("SaveGames"))
-            {
-                Directory.CreateDirectory("SaveGames");
-            }
+            //if (!Directory.Exists("SaveGames"))
+            //{
+            //    Directory.CreateDirectory("SaveGames");
+            //}
             
-            File.WriteAllText(Path.Combine("SaveGames", fileName), playerToSave, Encoding.UTF8);
+            //File.WriteAllText(Path.Combine("SaveGames", fileName), playerToSave, Encoding.UTF8);
             
-            return string.Empty;
+            return playerToSave;
 
         }
 

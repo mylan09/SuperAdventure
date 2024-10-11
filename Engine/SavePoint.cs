@@ -11,7 +11,6 @@ namespace Engine
     {
         public string Name { get; set; }
 
-
         public SavePoint(string name)
         {
             Name = name;

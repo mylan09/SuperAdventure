@@ -29,39 +29,24 @@ namespace SuperAdventure
         private const string PLAYER_DATA_FILE_NAME = "SaveGames";
 
         private Player _player;
-        // private InventoryChest _chest;
 
-        public SuperAdventure(string selectedSaveFile)
+        public SuperAdventure(Player player)
         {
             InitializeComponent();
-            
-            if (!string.IsNullOrEmpty(selectedSaveFile))
-                {
-                    if (File.Exists(selectedSaveFile))
-                    {
-                        var playerJsonStr = File.ReadAllText(selectedSaveFile);
 
-                        var options = new JsonSerializerSettings
-                        {
-                            TypeNameHandling = TypeNameHandling.All,
-                            PreserveReferencesHandling = PreserveReferencesHandling.All,
-                            NullValueHandling = NullValueHandling.Ignore,
-                            MissingMemberHandling = MissingMemberHandling.Ignore,
-                            DefaultValueHandling = DefaultValueHandling.Ignore,
-                        };
+            if (player != null)
+            {
+                World.Initialize();
 
-                        World.Initialize();
-
-                        _player = JsonConvert.DeserializeObject<Player>(playerJsonStr, options);
-                        _player.MoveTo(World.LocationByID(_player.CurrentLocation.ID));
-                    }
-                }
-                else
-                {
-                    // Standard-Spieler initialisieren
-                    _player = Player.CreateDefaultPlayer();
-                    _player.MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
-                }
+                _player = player;
+                _player.MoveTo(World.LocationByID(_player.CurrentLocation.ID));
+            }
+            else
+            {
+                // Standard-Spieler initialisieren
+                _player = Player.CreateDefaultPlayer();
+                _player.MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
+            }
 
             lblHitPoints.DataBindings.Add("Text", _player, "CurrentHitPoints");
             lblGold.DataBindings.Add("Text", _player, "Gold");
@@ -299,7 +284,8 @@ namespace SuperAdventure
 
         private void SuperAdventure_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _player.ToJsonString();
+            var saveScreen = new SaveScreen(_player);
+            saveScreen.UpdatePlayerSave(_player); 
             _player.PropertyChanged -= PlayerOnPropertyChanged;
             _player.OnMessage -= DisplayMessage;
             lblHitPoints.DataBindings.Clear();
